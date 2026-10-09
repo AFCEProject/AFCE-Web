@@ -93,6 +93,12 @@ nav a:hover {
   border-bottom: 1px solid var(--ink);
 }
 
+.nav-paper-disabled {
+  border-bottom: 1px dashed var(--line);
+  color: var(--muted);
+  cursor: default;
+}
+
 /* Layout */
 main {
   max-width: 1160px;
@@ -156,39 +162,12 @@ h1 > span {
   margin: 0;
 }
 
-.authors {
-  font-size: 15px;
-  line-height: 1.9;
-  margin: 26px auto 7px;
-  max-width: 950px;
-}
-
-.authors sup {
-  color: #507383;
-  font-size: 10px;
-  margin-left: 2px;
-}
-
-.affiliations {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 6px 25px;
-  font-size: 14px;
-}
-
-.correspondence {
-  font-size: 12px;
-  color: var(--muted);
-  margin: 8px 0;
-}
-
 .actions {
   display: flex;
   justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin: 26px 0 40px;
+  margin: 34px 0 40px;
 }
 
 .actions button,
@@ -671,8 +650,9 @@ footer {
   padding: 30px 6%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
   font-size: 14px;
   color: var(--muted);
 }
@@ -736,10 +716,6 @@ dialog img {
 
   .desktop {
     display: none;
-  }
-
-  .authors {
-    font-size: 14px;
   }
 
   .section-heading {
@@ -872,10 +848,6 @@ dialog img {
 
   .protocol {
     line-height: 1.8;
-  }
-
-  .affiliations {
-    font-size: 12px;
   }
 
   .actions {

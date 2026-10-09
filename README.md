@@ -43,13 +43,14 @@ Put MP4 files in `assets/videos/`. Replace a `.video-empty` block in `index.html
 </video>
 ```
 
-## Add code and arXiv links
+## Add paper / code / arXiv links
 
-In `.actions` in `index.html`, replace the disabled Code / arXiv buttons once URLs are ready:
+When ready for public release, put an anonymized or camera-ready `assets/paper.pdf` back, then replace the disabled buttons in `.actions` and the header “Paper forthcoming” control:
 
 ```html
+<a class="button primary" href="assets/paper.pdf" target="_blank" rel="noopener">Paper <span>PDF</span></a>
 <a class="button" href="YOUR_REPOSITORY_URL" target="_blank" rel="noopener">Code</a>
 <a class="button" href="YOUR_ARXIV_URL" target="_blank" rel="noopener">arXiv</a>
 ```
 
-Update `assets/paper.pdf` when the manuscript changes. Update values and notes in `app.js` if reported results change.
+Do not put author names, affiliations, or emails on the page until the project is ready to deanonymize. Update values and notes in `app.js` if reported results change.
