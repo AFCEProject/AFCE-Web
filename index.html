@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beyond Actions · AFCE</title>
+  <meta name="description" content="AFCE learns future-grounded, action-decodable Effects for dexterous manipulation.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23182f49'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Arial' font-size='22' fill='%237ddbc3'%3EE%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="#">AFCE<span class="brand-mark">E</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#idea">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#demos">Demos</a>
+    </nav>
+    <a class="nav-paper" href="assets/paper.pdf" target="_blank" rel="noopener">Read the paper</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">VISION · LANGUAGE · ACTION</div>
+      <h1>
+        Beyond Actions
+        <span>Learning Future Operation Targets<br>for Vision-Language-Action Models</span>
+      </h1>
+      <p class="lead">Teach robots what their actions <em>will change.</em></p>
+      <p class="intro">
+        AFCE learns future-grounded, action-decodable Effects<br class="desktop">
+        for coordinated dexterous manipulation.
+      </p>
+      <div class="authors">
+        Min Lin<sup>1</sup>, Bokai Zhou<sup>1</sup>, Jianqi Lin<sup>1</sup>, Kaiyuan Yang<sup>1</sup>,
+        Yicheng Chang<sup>1</sup>, Junjie Yu<sup>1</sup>,<br class="desktop">
+        Xiaofan Liu<sup>1</sup>, Jianhua Han<sup>2</sup>, Rui Li<sup>2</sup>,
+        Shen Zhao<sup>1,*</sup>, Xiaodan Liang<sup>1,2,*</sup>
+      </div>
+      <div class="affiliations">
+        <span><sup>1</sup> Sun Yat-sen University</span>
+        <span><sup>2</sup> Yinwang Intelligent Technology Co., Ltd.</span>
+      </div>
+      <div class="correspondence">
+        * Corresponding authors ·
+        <a href="mailto:linm57@mail2.sysu.edu.cn">linm57@mail2.sysu.edu.cn</a>
+      </div>
+      <div class="actions">
+        <a class="button primary" href="assets/paper.pdf" target="_blank" rel="noopener">
+          Paper <span>PDF</span>
+        </a>
+        <button disabled>Code <span>Coming soon</span></button>
+        <button disabled>arXiv <span>Link forthcoming</span></button>
+      </div>
+      <div class="hero-strip">
+        <span>Action</span><i>+</i>
+        <span>Robot response</span><i>+</i>
+        <span>World change</span>
+        <b>Physical Effect <em>E</em></b>
+      </div>
+      <div class="metrics">
+        <div>
+          <strong>50.97<span>%</span></strong>
+          <p>Overall success on DexJoCo</p>
+        </div>
+        <div>
+          <strong>+11.82<span>pp</span></strong>
+          <p>Improvement over π₀.₅</p>
+        </div>
+        <div>
+          <strong>5<span>/ 5</span></strong>
+          <p>Bimanual tasks led among compared methods</p>
+        </div>
+      </div>
+      <p class="protocol">11 tasks · 3 evaluation seeds · 1,650 episodes per method · rand-obj</p>
+    </section>
+
+    <section id="idea">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">01 / THE IDEA</div>
+          <h2>From commands<br>to consequences.</h2>
+        </div>
+        <p>
+          An action specifies a command. An Effect connects that command to the robot’s response
+          and the resulting scene change—while remaining decodable into continuous actions.
+        </p>
+      </div>
+      <figure>
+        <button class="image-button" data-image="comparison" aria-label="Enlarge comparison of supervision paradigms">
+          <img
+            src="assets/comparison.png"
+            alt="Comparison of standard VLA, world-action models, and AFCE supervision"
+            width="1680"
+            height="696"
+          >
+        </button>
+        <figcaption>
+          <span>THREE SUPERVISION PARADIGMS</span>
+          Future evidence constructs training targets; the deployed policy uses current observations.
+          <a href="assets/comparison.pdf" target="_blank" rel="noopener">View original PDF</a>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="method">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">02 / THE METHOD</div>
+          <h2>Learn the Effect.<br>Then learn to predict it.</h2>
+        </div>
+        <p>
+          Two stages connect future-grounded representation learning to closed-loop control.
+          Shared Effect tokens accommodate single-arm and bimanual interfaces.
+        </p>
+      </div>
+      <div class="steps">
+        <article>
+          <span class="step-number">01</span>
+          <h3>Construct</h3>
+          <p>
+            Fuse demonstrated actions, realized robot responses, and sparse visual transitions
+            into temporally ordered Effect tokens.
+          </p>
+        </article>
+        <article>
+          <span class="step-number">02</span>
+          <h3>Predict</h3>
+          <p>
+            Train a flow-matching VLA to predict the Effect from current images, language, and robot state.
+          </p>
+        </article>
+        <article>
+          <span class="step-number">03</span>
+          <h3>Execute</h3>
+          <p>
+            Decode the predicted Effect into an action chunk, execute a prefix, and replan from new observations.
+          </p>
+        </article>
+      </div>
+      <figure>
+        <button class="image-button" data-image="method" aria-label="Enlarge AFCE method diagram">
+          <img
+            loading="lazy"
+            src="assets/method.png"
+            alt="AFCE two-stage architecture and embodiment-specific interfaces"
+            width="1650"
+            height="938"
+          >
+        </button>
+        <figcaption>
+          <span>AFCE FRAMEWORK</span>
+          Future-evidence encoders are used for target construction, not deployment.
+          <a href="assets/method.pdf" target="_blank" rel="noopener">View original PDF</a>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="effect-section">
+      <div class="effect-copy">
+        <div class="eyebrow">A CLOSER LOOK</div>
+        <h2>Physical change,<br>made executable.</h2>
+        <p>
+          The hammer–nail example links decoded robot motion to the accompanying scene transition
+          across three successive frames.
+        </p>
+        <p class="muted">Top: decoded robot motion.<br>Bottom: accompanying scene changes.</p>
+        <p class="small">
+          This is a qualitative reconstruction example, not a predicted-policy success-rate evaluation.
+        </p>
+      </div>
+      <figure>
+        <button class="image-button" data-image="hammer" aria-label="Enlarge hammer-nail visualization">
+          <img
+            loading="lazy"
+            src="assets/hammer.png"
+            alt="Three hammer-nail frames with decoded motion above and scene changes below"
+            width="2531"
+            height="1701"
+          >
+        </button>
+        <figcaption>
+          <a href="assets/hammer.pdf" target="_blank" rel="noopener">View original PDF</a>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="results">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">03 / EVALUATION</div>
+          <h2>Stronger coordination.<br>Measurable gains.</h2>
+        </div>
+        <p>
+          AFCE improves overall success, with its largest gains on bimanual tasks.
+          Fine-grained single-arm control remains a challenge.
+        </p>
+      </div>
+      <div class="results-panel">
+        <div class="chart-top">
+          <div>
+            <h3>DexJoCo success rate</h3>
+            <p class="small">Mean ± sample standard deviation across evaluation seeds</p>
+          </div>
+          <div class="tabs" role="group" aria-label="Evaluation group">
+            <button class="active" data-group="all" aria-pressed="true">Overall</button>
+            <button data-group="ba" aria-pressed="false">Bimanual</button>
+            <button data-group="sa" aria-pressed="false">Single-arm</button>
+          </div>
+        </div>
+        <div id="chart" aria-live="polite"></div>
+        <p id="chart-note" class="chart-note"></p>
+        <p class="small">
+          50 episodes per task per seed; seeds 0, 1, 2. One checkpoint per method.
+          Variability is across evaluation seeds, not training runs.
+        </p>
+      </div>
+      <details>
+        <summary>View all 11 task results</summary>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>π₀.₅</th>
+                <th>UVT</th>
+                <th>AFCE</th>
+              </tr>
+            </thead>
+            <tbody id="task-rows"></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section class="analysis-section">
+      <div>
+        <div class="eyebrow">WHERE IT HELPS</div>
+        <h2>Understanding<br>the remaining gap.</h2>
+        <p>
+          Coordination improves substantially, while precision tasks expose unresolved limitations
+          in fine control. The task-family analysis here uses evaluation seed 0.
+        </p>
+        <p class="small">
+          “Bimanual” in this figure refers to Microwave and Photograph; the main bimanual score
+          averages all five dual-arm tasks.
+        </p>
+      </div>
+      <figure>
+        <button class="image-button" data-image="failures" aria-label="Enlarge task-family failure rates">
+          <img
+            loading="lazy"
+            src="assets/failures.png"
+            alt="Failure rates by task family comparing the official pi0.5 policy and AFCE"
+            width="990"
+            height="496"
+          >
+        </button>
+        <figcaption>
+          <a href="assets/failures.pdf" target="_blank" rel="noopener">View original PDF</a>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="demos">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">04 / ROBOT DEMONSTRATIONS</div>
+          <h2>See the policy in action.</h2>
+        </div>
+        <p>Rollout videos will be added here.</p>
+      </div>
+      <div class="video-grid">
+        <article>
+          <div class="video-empty"><span>VIDEO FORTHCOMING</span></div>
+          <h3>Microwave</h3>
+          <p>Bimanual manipulation</p>
+        </article>
+        <article>
+          <div class="video-empty"><span>VIDEO FORTHCOMING</span></div>
+          <h3>Photograph</h3>
+          <p>Bimanual coordination</p>
+        </article>
+        <article>
+          <div class="video-empty"><span>VIDEO FORTHCOMING</span></div>
+          <h3>Hammer Nail</h3>
+          <p>Single-arm tool use</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#">AFCE<span class="brand-mark">E</span></a>
+    <p>Action–Future Coupled Effect Learning</p>
+    <a href="mailto:linm57@mail2.sysu.edu.cn">Contact</a>
+  </footer>
+
+  <dialog id="lightbox">
+    <button id="close-lightbox" aria-label="Close image">Close ×</button>
+    <img id="enlarged" alt="">
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

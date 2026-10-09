@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+__pycache__/
+*.log
+.env
+.env.*
+*.zip
+_extract_tmp/
