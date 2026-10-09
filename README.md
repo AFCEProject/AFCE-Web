@@ -2,16 +2,16 @@
 
 Research project website for **Beyond Actions: Learning Future Operation Targets for Vision-Language-Action Models**.
 
-Static site (HTML / CSS / JS). No build step. Figures, original PDFs, paper PDF, interactive DexJoCo summaries, image lightbox, and video placeholders.
+Static site (HTML / CSS / JS), with no build step. Includes a selectable rollout viewer, original research figures and PDFs, interactive DexJoCo results, and an image lightbox. Paper and arXiv links remain forthcoming.
 
 ## Structure
 
 ```
 AFCE-Web/
-├── index.html      # Page sections: hero, idea, method, results, demos
-├── style.css       # Layout, typography, responsive styles
-├── app.js          # Chart tabs, task table, lightbox
-├── assets/         # Paper PDF, figure PNGs and source PDFs
+├── index.html      # Paper title, rollout viewer, overview, method, results
+├── style.css       # Typography, layout, responsive styles
+├── app.js          # Rollout selection/playback, charts, task table, lightbox
+├── assets/         # Original figures, PDFs, videos, and self-hosted fonts
 ├── .nojekyll       # Serve files as-is on GitHub Pages
 └── README.md
 ```
@@ -39,6 +39,12 @@ MP4 rollouts live in `assets/videos/`:
 - `microwave.mp4`
 - `photograph.mp4`
 - `hammer-nail.mp4`
+
+Only the selected rollout plays. Videos pause when the viewer is off screen or the tab is hidden; reduced-motion preferences disable automatic playback. Native video controls remain available.
+
+## Typography
+
+Source Serif 4 and IBM Plex Sans are self-hosted in `assets/fonts/`. Their SIL Open Font License files are included in the same directory. The site does not require a font CDN.
 
 ## Links
 
