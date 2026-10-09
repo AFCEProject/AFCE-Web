@@ -555,6 +555,16 @@ thead {
   gap: 22px;
 }
 
+.video-grid video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f5f7fa;
+  border: 1px solid var(--line);
+}
+
 .video-empty {
   aspect-ratio: 16 / 10;
   border: 1px dashed #b8c5d0;

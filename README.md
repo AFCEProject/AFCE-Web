@@ -32,25 +32,17 @@ Open http://localhost:8000.
 
 Asset paths are relative, so the site also works under a repository subpath.
 
-## Add videos
+## Demo videos
 
-Put MP4 files in `assets/videos/`. Replace a `.video-empty` block in `index.html` with:
+MP4 rollouts live in `assets/videos/`:
 
-```html
-<video controls muted playsinline preload="metadata" style="width:100%;border-radius:8px">
-  <source src="assets/videos/microwave.mp4" type="video/mp4">
-  Your browser does not support embedded video.
-</video>
-```
+- `microwave.mp4`
+- `photograph.mp4`
+- `hammer-nail.mp4`
 
-## Add paper / code / arXiv links
+## Links
 
-When ready for public release, put an anonymized or camera-ready `assets/paper.pdf` back, then replace the disabled buttons in `.actions` and the header “Paper forthcoming” control:
+- Code: [AFCEProject/AFCE](https://github.com/AFCEProject/AFCE)
+- Paper / arXiv: still forthcoming on the page
 
-```html
-<a class="button primary" href="assets/paper.pdf" target="_blank" rel="noopener">Paper <span>PDF</span></a>
-<a class="button" href="YOUR_REPOSITORY_URL" target="_blank" rel="noopener">Code</a>
-<a class="button" href="YOUR_ARXIV_URL" target="_blank" rel="noopener">arXiv</a>
-```
-
-Do not put author names, affiliations, or emails on the page until the project is ready to deanonymize. Update values and notes in `app.js` if reported results change.
+When ready, put an anonymized or camera-ready `assets/paper.pdf` back and wire Paper / arXiv buttons. Do not put author names, affiliations, or emails on the page until the project is ready to deanonymize.
